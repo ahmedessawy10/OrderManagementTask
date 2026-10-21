@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'sms' => [
+        'driver' => env('SMS_DRIVER', 'log'),
+        'account_id' => env('sms_ACCOUNT_ID', ''),
+        'password' => env('sms_PASSWORD', ''),
+        'secret' => env('sms_SECRET', ''),
+        'app_key' => env('APP_KEY_SMS', ''),
+    ],
+
 ];
