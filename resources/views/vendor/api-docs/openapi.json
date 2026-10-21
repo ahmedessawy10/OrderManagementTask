@@ -1,0 +1,1562 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Laravel API",
+        "version": "1.0.0",
+        "description": "Auto generated reference for every endpoint exposed by this application."
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Default server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Auths"
+        },
+        {
+            "name": "Notifications"
+        }
+    ],
+    "paths": {
+        "/api/v1/auth/change-password": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Change password",
+                "operationId": "postApiV1AuthChangePassword",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@changePassword",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/change-profile-image": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Change profile image",
+                "operationId": "postApiV1AuthChangeProfileImage",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@changeProfileImage",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/delete-account": {
+            "delete": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Delete account",
+                "operationId": "deleteApiV1AuthDeleteAccount",
+                "responses": {
+                    "204": {
+                        "description": "The resource was deleted."
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@deleteAccount",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/forgot-password": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Forgot password",
+                "operationId": "postApiV1AuthForgotPassword",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@forgotPassword",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Login",
+                "operationId": "postApiV1AuthLogin",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@login",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Logout",
+                "operationId": "postApiV1AuthLogout",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@logout",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/profile": {
+            "get": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Profile",
+                "operationId": "getApiV1AuthProfile",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@profile",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Refresh",
+                "operationId": "postApiV1AuthRefresh",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@refresh",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Register",
+                "operationId": "postApiV1AuthRegister",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@register",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Reset password",
+                "operationId": "postApiV1AuthResetPassword",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "+1 555 010 9999"
+                            ]
+                        },
+                        "example": "+1 555 010 9999"
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "code"
+                            ]
+                        },
+                        "example": "code"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "secret1234"
+                            ]
+                        },
+                        "example": "secret1234"
+                    },
+                    {
+                        "name": "application",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "application"
+                            ]
+                        },
+                        "example": "application"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@resetPassword",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/auth/send-otp": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Send otp",
+                "operationId": "postApiV1AuthSendOtp",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@sendOtp",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/auth/set-language": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Set language",
+                "operationId": "postApiV1AuthSetLanguage",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "language"
+                            ]
+                        },
+                        "example": "language"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@setLanguage",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/auth/verify-otp": {
+            "post": {
+                "tags": [
+                    "Auths"
+                ],
+                "summary": "Verify otp",
+                "operationId": "postApiV1AuthVerifyOtp",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                },
+                "security": [],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@verifyOtp",
+                "x-middleware": [
+                    "api"
+                ]
+            }
+        },
+        "/api/v1/notifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Get user notifications list.",
+                "operationId": "getApiV1Notifications",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "description": "Defaults to `15`.",
+                        "schema": {
+                            "type": "integer",
+                            "default": 15,
+                            "examples": [
+                                15
+                            ]
+                        },
+                        "example": 15
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@index",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/device-token": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Store device token for push notifications.",
+                "operationId": "postApiV1NotificationsDeviceToken",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "device_id": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "description": "May be `null`. Must be at most 100 characters.",
+                                        "maxLength": 100,
+                                        "examples": [
+                                            1
+                                        ]
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "description": "Required when ``device_token`` is absent. Must be at most 500 characters.",
+                                        "maxLength": 500,
+                                        "examples": [
+                                            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.example-signature"
+                                        ]
+                                    },
+                                    "device_token": {
+                                        "type": "string",
+                                        "description": "Required when ``token`` is absent. Must be at most 500 characters.",
+                                        "maxLength": 500,
+                                        "examples": [
+                                            "device token"
+                                        ]
+                                    }
+                                }
+                            },
+                            "example": {
+                                "device_id": 1,
+                                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.example-signature",
+                                "device_token": "device token"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The authenticated user may not perform this action.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "This action is unauthorized."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "This action is unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "The payload failed validation.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "The field is invalid."
+                                            ]
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "field": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "examples": [
+                                                            "The field is invalid."
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "The field is invalid.",
+                                    "errors": {
+                                        "field": [
+                                            "The field is invalid."
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@storeDeviceToken",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Remove device token.",
+                "operationId": "deleteApiV1NotificationsDeviceToken",
+                "responses": {
+                    "204": {
+                        "description": "The resource was deleted."
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@removeDeviceToken",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/read-all": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Mark all notifications as read.",
+                "operationId": "postApiV1NotificationsReadAll",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@markAllAsRead",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/toggle": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Toggle notifications on/off.",
+                "operationId": "postApiV1NotificationsToggle",
+                "parameters": [
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "examples": [
+                                "active"
+                            ]
+                        },
+                        "example": "active"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "active": {
+                                        "type": "boolean",
+                                        "examples": [
+                                            true
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "active"
+                                ]
+                            },
+                            "example": {
+                                "active": true
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "The payload failed validation.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "The active field is required."
+                                            ]
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "properties": {
+                                                "active": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "examples": [
+                                                            "The active field is required."
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "The active field is required.",
+                                    "errors": {
+                                        "active": [
+                                            "The active field is required."
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@toggleNotification",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/unread-count": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Get unread notifications count.",
+                "operationId": "getApiV1NotificationsUnreadCount",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@unreadCount",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/{id}": {
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Delete a notification.",
+                "operationId": "deleteApiV1NotificationsId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id identifier.",
+                        "schema": {
+                            "type": "integer",
+                            "examples": [
+                                1
+                            ]
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "The resource was deleted."
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No resource matches the given identifier.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "No query results for model."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "No query results for model."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@destroy",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        },
+        "/api/v1/notifications/{id}/read": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Mark notification as read.",
+                "operationId": "postApiV1NotificationsIdRead",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id identifier.",
+                        "schema": {
+                            "type": "integer",
+                            "examples": [
+                                1
+                            ]
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "The request is missing a valid access token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "Unauthenticated."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Unauthenticated."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No resource matches the given identifier.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "examples": [
+                                                "No query results for model."
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "No query results for model."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "x-headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json",
+                        "required": true,
+                        "description": ""
+                    },
+                    {
+                        "name": "Authorization",
+                        "value": "Bearer {YOUR_API_TOKEN}",
+                        "required": true,
+                        "description": "Bearer token issued by the authentication endpoints."
+                    }
+                ],
+                "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\NotificationController@markAsRead",
+                "x-middleware": [
+                    "api",
+                    "auth:api"
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Bearer token issued by the authentication endpoints."
+            }
+        },
+        "schemas": {
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "examples": [
+                            "Server Error"
+                        ]
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            },
+            "ValidationErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "examples": [
+                            "The given data was invalid."
+                        ]
+                    },
+                    "errors": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "message",
+                    "errors"
+                ]
+            }
+        }
+    }
+}
