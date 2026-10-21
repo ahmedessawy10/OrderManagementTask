@@ -32,5 +32,6 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="JWT_SECRET" value="5asKoCtLXIpCmTrajqJUDsLrLaoNEFWR0vTDMfms5cPbKeGZj9s4OlKy4dNjxFOg"/>
     </php>
 </phpunit>
