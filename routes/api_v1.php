@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Api\V1\Client\AuthController;
 use App\Http\Controllers\Api\V1\Client\NotificationController;
+use App\Http\Controllers\Api\V1\Client\ProductController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('products', [ProductController::class, 'index'])->name('products.index');
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);

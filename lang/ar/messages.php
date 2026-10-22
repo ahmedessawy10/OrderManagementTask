@@ -16,4 +16,9 @@ return [
         'message' => 'كود التحقق الخاص بك هو: :code :app_key',
     ],
 
+    'product' => [
+        'retrieved' => 'تم استرجاع المنتجات بنجاح',
+    ],
+
+
 ];

@@ -16,4 +16,9 @@ return [
         'message' => 'Your verification code is: :code :app_key',
     ],
 
+    'product' => [
+        'retrieved' => 'Products retrieved successfully',
+    ],
+
+
 ];
