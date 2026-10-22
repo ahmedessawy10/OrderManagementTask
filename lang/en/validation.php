@@ -184,6 +184,89 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        // Auth
+        'name' => [
+            'required' => 'The name is required.',
+        ],
+        'email' => [
+            'email' => 'The email must be a valid email address.',
+            'unique' => 'This email is already in use.',
+        ],
+        'phone' => [
+            'required' => 'The phone number is required.',
+            'regex' => 'The phone number must be a valid Kuwaiti number (00965 or +965 followed by 8 digits).',
+            'exists' => 'No account was found for this phone number.',
+            'unique' => 'This phone number is already registered.',
+        ],
+        'password' => [
+            'required' => 'The password is required.',
+            'min' => 'The password must be at least 8 characters.',
+            'confirmed' => 'The password confirmation does not match.',
+        ],
+        'current_password' => [
+            'required' => 'The current password is required.',
+        ],
+        'code' => [
+            'required' => 'The verification code is required.',
+            'size' => 'The verification code must be 4 digits.',
+        ],
+        'type' => [
+            'required' => 'The verification type is required.',
+            'enum' => 'The selected verification type is invalid.',
+        ],
+        'user_id' => [
+            'required' => 'The user is required.',
+            'integer' => 'The user id must be an integer.',
+            'exists' => 'The selected user does not exist.',
+        ],
+        'language' => [
+            'required' => 'The language is required.',
+            'in' => 'The language must be either en or ar.',
+        ],
+        'profile_image' => [
+            'required' => 'The profile image is required.',
+            'image' => 'The profile image must be an image.',
+            'mimes' => 'The profile image must be a jpeg, jpg, png or webp file.',
+            'max' => 'The profile image may not be greater than 2 MB.',
+        ],
+
+        // Orders
+        'items' => [
+            'required' => 'The order must contain at least one item.',
+            'array' => 'The items must be an array.',
+            'min' => 'The order must contain at least :min item.',
+            'max' => 'The order may not contain more than :max items.',
+            'total_max' => 'The order total may not be greater than :max.',
+            'item' => [
+                'required' => 'Each item is required.',
+                'array' => 'Each item must be an object with product_id and quantity only.',
+            ],
+            'product_id' => [
+                'required' => 'The product is required for each item.',
+                'integer' => 'The product id must be an integer.',
+                'distinct' => 'The same product cannot be added twice; increase its quantity instead.',
+                'exists' => 'The selected product does not exist.',
+            ],
+            'quantity' => [
+                'required' => 'The quantity is required for each item.',
+                'integer' => 'The quantity must be an integer.',
+                'min' => 'The quantity must be at least :min.',
+                'max' => 'The quantity may not be greater than :max.',
+            ],
+        ],
+        'status' => [
+            'required' => 'The status is required.',
+            'in' => 'You can only cancel the order; it is confirmed by a successful payment.',
+            'enum' => 'The selected status is invalid.',
+        ],
+
+        // Payments
+        'payment_method' => [
+            'required' => 'The payment method is required.',
+            'string' => 'The payment method must be a string.',
+            'in' => 'The selected payment method is not supported.',
+        ],
     ],
 
     /*
