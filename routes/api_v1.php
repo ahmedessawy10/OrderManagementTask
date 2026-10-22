@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Client\AuthController;
 use App\Http\Controllers\Api\V1\Client\NotificationController;
+use App\Http\Controllers\Api\V1\Client\OrderController;
 use App\Http\Controllers\Api\V1\Client\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::prefix('auth')->group(function () {
         Route::post('set-language', [AuthController::class, 'setLanguage']);
         Route::delete('delete-account', [AuthController::class, 'deleteAccount']);
     });
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('orders', OrderController::class)->whereNumber('order');
 });
 
 Route::prefix('notifications')->middleware('auth:api')->group(function () {
