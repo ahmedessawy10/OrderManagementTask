@@ -31,4 +31,14 @@ final class Product extends Model implements HasMedia
     {
         return $this->hasMany(ProductTranslation::class);
     }
+
+    /**
+     * Name in the current locale, falling back to the first translation.
+     */
+    public function translatedName(): string
+    {
+        $translation = $this->translations->firstWhere('locale', app()->getLocale()) ?? $this->translations->first();
+
+        return $translation->name ?? '';
+    }
 }
