@@ -1,0 +1,3526 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Default module",
+    "description": "Order & Payment API (Laravel 13, JWT). See README.md for the design.\n\n**Quick start**\n1. Select the *Order Management – Local* environment (or edit the collection variables).\n2. Authentication → **Login** (seeded `0096512345678` / `12345678`) saves `token`.\n3. Orders → **Create Order** (saves `order_id`).\n4. Payments → **Process Payment** (saves `payment_id`, `payment_reference`, `payment_amount`). A successful payment confirms the order.\n5. Webhooks → set `webhook_secret` to `CREDIT_CARD_WEBHOOK_SECRET` and send events for `{{payment_reference}}`.\n\n**Envelope**: success is `{status: true, message, data, [pagination]}`; error is `{status: false, message, errors}`. `errors` is the field map for validation errors, otherwise `null`.\n\n**Headers**: every request sends `Accept: application/json` and `Accept-Language: {{locale}}` (`en` | `ar`). For authenticated requests, the user's stored `preferred_language` overrides the header. The seeded user prefers `ar`; use Authentication → Set Language.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Products"
+    },
+    {
+      "name": "Orders"
+    },
+    {
+      "name": "Payments"
+    },
+    {
+      "name": "Webhooks"
+    }
+  ],
+  "paths": {
+    "/api/v1/auth/refresh": {
+      "post": {
+        "summary": "refresh",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string",
+                    "example": "",
+                    "nullable": true
+                  }
+                }
+              },
+              "example": {
+                "refresh_token": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "summary": "Register",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "ahmed  mostafa",
+                    "type": "string"
+                  },
+                  "email": {
+                    "example": "am@gmail.com",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "example": "0096512345678",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "12345678",
+                    "type": "string"
+                  },
+                  "password_confirmation": {
+                    "example": "12345678",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "phone",
+                  "password",
+                  "password_confirmation"
+                ]
+              },
+              "example": {
+                "name": "ahmed  mostafa",
+                "email": "am@gmail.com",
+                "phone": "0096512345678",
+                "password": "12345678",
+                "password_confirmation": "12345678"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "summary": "login",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "description": "0103039035",
+                    "example": "0096512345678",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "12345678",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone",
+                  "password"
+                ]
+              },
+              "example": {
+                "phone": "0096512345678",
+                "password": "12345678"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/send-otp": {
+      "post": {
+        "summary": "send  otp",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "0096512345678",
+                    "type": "string"
+                  },
+                  "type": {
+                    "example": "login",
+                    "type": "string"
+                  },
+                  "provider": {
+                    "description": "nullable  ,  sms or  whatsapp",
+                    "example": "sms",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone",
+                  "type"
+                ]
+              },
+              "example": {
+                "phone": "0096512345678",
+                "type": "login",
+                "provider": "sms"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/verify-otp": {
+      "post": {
+        "summary": "verify otp",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "0096512345678",
+                    "type": "string"
+                  },
+                  "type": {
+                    "example": "login",
+                    "type": "string"
+                  },
+                  "code": {
+                    "example": "1234",
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "required  in type \n change_phone\n",
+                    "example": "",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "phone",
+                  "type",
+                  "code"
+                ]
+              },
+              "example": {
+                "phone": "0096512345678",
+                "type": "login",
+                "code": "1234",
+                "user_id": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "summary": "logout",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{lang}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "device_id": {
+                    "example": "",
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "device_id": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "summary": "forget password",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "0096512345678",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone"
+                ]
+              },
+              "example": {
+                "phone": "0096512345678"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/reset-password": {
+      "post": {
+        "summary": "reset password",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "example": "0096512345678",
+                    "type": "string"
+                  },
+                  "password": {
+                    "example": "123456789",
+                    "type": "string"
+                  },
+                  "code": {
+                    "example": "1234",
+                    "type": "string"
+                  },
+                  "password_confirmation": {
+                    "example": "123456789",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone",
+                  "password",
+                  "code",
+                  "password_confirmation"
+                ]
+              },
+              "example": {
+                "phone": "0096512345678",
+                "password": "123456789",
+                "code": "1234",
+                "password_confirmation": "123456789"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/delete-account": {
+      "delete": {
+        "summary": "delete account",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "summary": "products",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "filter[search]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "سامسونج",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[min_price]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "100",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[max_price]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "400",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "15",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "ar",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/orders": {
+      "get": {
+        "summary": "List Orders",
+        "deprecated": false,
+        "description": "Paginated orders of the current user, with items and user.\n\n| Query | Values |\n|---|---|\n| `filter[status]` | `pending` \\| `confirmed` \\| `cancelled` |\n| `sort` | `id`, `created_at`, `total_amount` (prefix `-` for desc). Default `-id` |\n| `per_page` | default 15, max 100 (values < 1 fall back to 15) |\n| `page` | page number |\n\nUnknown filters or sorts answer **400**.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "filter[status]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "-id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "15",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "status_label": {
+                            "type": "string"
+                          },
+                          "total_amount": {
+                            "type": "string"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "is_paid": {
+                            "type": "boolean"
+                          },
+                          "paid_at": {
+                            "type": "null"
+                          },
+                          "user": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "phone": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "email",
+                              "phone"
+                            ]
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "product_name": {
+                                  "type": "string"
+                                },
+                                "quantity": {
+                                  "type": "integer"
+                                },
+                                "price": {
+                                  "type": "string"
+                                },
+                                "subtotal": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "product_name",
+                                "quantity",
+                                "price",
+                                "subtotal"
+                              ]
+                            }
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "status",
+                          "status_label",
+                          "total_amount",
+                          "currency",
+                          "is_paid",
+                          "paid_at",
+                          "user",
+                          "items",
+                          "created_at",
+                          "updated_at"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "last_page": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "current_page",
+                        "last_page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "pagination"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Orders retrieved successfully",
+                  "data": [
+                    {
+                      "id": 4,
+                      "status": "pending",
+                      "status_label": "Pending",
+                      "total_amount": "59.98",
+                      "currency": "KWD",
+                      "is_paid": false,
+                      "paid_at": null,
+                      "user": {
+                        "id": 1,
+                        "name": "Client User",
+                        "email": "client@app.com",
+                        "phone": "0096512345678"
+                      },
+                      "items": [
+                        {
+                          "id": 7,
+                          "product_name": "Mug",
+                          "quantity": 3,
+                          "price": "19.99",
+                          "subtotal": "59.97"
+                        },
+                        {
+                          "id": 8,
+                          "product_name": "Sticker",
+                          "quantity": 1,
+                          "price": "0.01",
+                          "subtotal": "0.01"
+                        }
+                      ],
+                      "created_at": "2026-10-22T17:20:00+00:00",
+                      "updated_at": "2026-10-22T17:20:00+00:00"
+                    },
+                    {
+                      "id": 3,
+                      "status": "cancelled",
+                      "status_label": "Cancelled",
+                      "total_amount": "9.00",
+                      "currency": "KWD",
+                      "is_paid": false,
+                      "paid_at": null,
+                      "user": {
+                        "id": 1,
+                        "name": "Client User",
+                        "email": "client@app.com",
+                        "phone": "0096512345678"
+                      },
+                      "items": [
+                        {
+                          "id": 6,
+                          "product_name": "Notebook",
+                          "quantity": 2,
+                          "price": "4.50",
+                          "subtotal": "9.00"
+                        }
+                      ],
+                      "created_at": "2026-10-22T17:20:00+00:00",
+                      "updated_at": "2026-10-22T17:20:00+00:00"
+                    }
+                  ],
+                  "pagination": {
+                    "current_page": 1,
+                    "last_page": 2,
+                    "per_page": 2,
+                    "total": 3
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Requested filter(s) `user_id` are not allowed. Allowed filter(s) are `status`.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Unauthenticated. Please log in and try again.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create Order",
+        "deprecated": false,
+        "description": "Creates a `pending` order. **The test script saves `order_id`.**\n\n| Field | Rules |\n|---|---|\n| items | required, array, 1–100 entries |\n| items.*.product_name | required, string, max 255 |\n| items.*.quantity | required, integer, 1–10000 |\n| items.*.price | required, numeric, max 2 decimals, 0.01–999999.99 |\n\nEach item may only contain these three keys. The order total may not exceed 99,999,999.99.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "product_name": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "product_name",
+                        "quantity",
+                        "price"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "items"
+                ]
+              },
+              "example": "{\n  \"items\": [\n    {\n      \"product_id\": 6,\n      \"quantity\": 3,\n    },\n    {\n      \"product_id\": 3,\n      \"quantity\": 1,\n    }\n  ]\n}"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "total_amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "is_paid": {
+                          "type": "boolean"
+                        },
+                        "paid_at": {
+                          "type": "null"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "email",
+                            "phone"
+                          ]
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "product_name": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              },
+                              "price": {
+                                "type": "string"
+                              },
+                              "subtotal": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "product_name",
+                              "quantity",
+                              "price",
+                              "subtotal"
+                            ]
+                          }
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status",
+                        "status_label",
+                        "total_amount",
+                        "currency",
+                        "is_paid",
+                        "paid_at",
+                        "user",
+                        "items",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Order created successfully",
+                  "data": {
+                    "id": 1,
+                    "status": "pending",
+                    "status_label": "Pending",
+                    "total_amount": "59.98",
+                    "currency": "KWD",
+                    "is_paid": false,
+                    "paid_at": null,
+                    "user": {
+                      "id": 1,
+                      "name": "Client User",
+                      "email": "client@app.com",
+                      "phone": "0096512345678"
+                    },
+                    "items": [
+                      {
+                        "id": 1,
+                        "product_name": "Mug",
+                        "quantity": 3,
+                        "price": "19.99",
+                        "subtotal": "59.97"
+                      },
+                      {
+                        "id": 2,
+                        "product_name": "Sticker",
+                        "quantity": 1,
+                        "price": "0.01",
+                        "subtotal": "0.01"
+                      }
+                    ],
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Unauthenticated. Please log in and try again.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "items.0.quantity": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "items.0.price": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "items.0.quantity",
+                        "items.0.price"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The quantity must be at least 1.",
+                  "errors": {
+                    "items.0.quantity": [
+                      "The quantity must be at least 1."
+                    ],
+                    "items.0.price": [
+                      "The price may have at most 2 decimal places."
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/{order_id}": {
+      "get": {
+        "summary": "Get Order",
+        "deprecated": false,
+        "description": "One order of the current user, with items, user and its `payments` (newest first). Missing or not owned → 404.\n\nThere is no separate `GET /orders/{id}/payments`; this response carries the order's payments.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The order id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "total_amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "is_paid": {
+                          "type": "boolean"
+                        },
+                        "paid_at": {
+                          "type": "null"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "email",
+                            "phone"
+                          ]
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "product_name": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              },
+                              "price": {
+                                "type": "string"
+                              },
+                              "subtotal": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "product_name",
+                              "quantity",
+                              "price",
+                              "subtotal"
+                            ]
+                          }
+                        },
+                        "payments": {
+                          "type": "array",
+                          "items": []
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status",
+                        "status_label",
+                        "total_amount",
+                        "currency",
+                        "is_paid",
+                        "paid_at",
+                        "user",
+                        "items",
+                        "payments",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Order retrieved successfully",
+                  "data": {
+                    "id": 1,
+                    "status": "pending",
+                    "status_label": "Pending",
+                    "total_amount": "59.98",
+                    "currency": "KWD",
+                    "is_paid": false,
+                    "paid_at": null,
+                    "user": {
+                      "id": 1,
+                      "name": "Client User",
+                      "email": "client@app.com",
+                      "phone": "0096512345678"
+                    },
+                    "items": [
+                      {
+                        "id": 1,
+                        "product_name": "Mug",
+                        "quantity": 3,
+                        "price": "19.99",
+                        "subtotal": "59.97"
+                      },
+                      {
+                        "id": 2,
+                        "product_name": "Sticker",
+                        "quantity": 1,
+                        "price": "0.01",
+                        "subtotal": "0.01"
+                      }
+                    ],
+                    "payments": [],
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The requested resource was not found.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Order Items",
+        "deprecated": false,
+        "description": "PUT and PATCH behave the same (every field optional). Sending `items` **replaces** all items and recomputes the total. This is allowed only while the order is `pending`; once a payment has confirmed it, the answer is **409**.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The order id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "product_name": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "product_name",
+                        "quantity",
+                        "price"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "items"
+                ]
+              },
+              "example": {
+                "items": [
+                  {
+                    "product_name": "Pen",
+                    "quantity": 10,
+                    "price": 0.1
+                  },
+                  {
+                    "product_name": "Book",
+                    "quantity": 1,
+                    "price": "12.35"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "total_amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "is_paid": {
+                          "type": "boolean"
+                        },
+                        "paid_at": {
+                          "type": "null"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "email",
+                            "phone"
+                          ]
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "product_name": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              },
+                              "price": {
+                                "type": "string"
+                              },
+                              "subtotal": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "product_name",
+                              "quantity",
+                              "price",
+                              "subtotal"
+                            ]
+                          }
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status",
+                        "status_label",
+                        "total_amount",
+                        "currency",
+                        "is_paid",
+                        "paid_at",
+                        "user",
+                        "items",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Order updated successfully",
+                  "data": {
+                    "id": 1,
+                    "status": "pending",
+                    "status_label": "Pending",
+                    "total_amount": "13.35",
+                    "currency": "KWD",
+                    "is_paid": false,
+                    "paid_at": null,
+                    "user": {
+                      "id": 1,
+                      "name": "Client User",
+                      "email": "client@app.com",
+                      "phone": "0096512345678"
+                    },
+                    "items": [
+                      {
+                        "id": 3,
+                        "product_name": "Pen",
+                        "quantity": 10,
+                        "price": "0.10",
+                        "subtotal": "1.00"
+                      },
+                      {
+                        "id": 4,
+                        "product_name": "Book",
+                        "quantity": 1,
+                        "price": "12.35",
+                        "subtotal": "12.35"
+                      }
+                    ],
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Order items can only be changed while the order is pending.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "items"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The order must contain at least one item.",
+                  "errors": {
+                    "items": [
+                      "The order must contain at least one item."
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Cancel Order",
+        "deprecated": false,
+        "description": "The only status a client can set. It moves a `pending` order to `cancelled`.\n\n- Refused with **409** when the order is paid, or has a `pending` payment that could still succeed.\n- Sending `status: confirmed` answers **422**, because only a successful payment confirms an order.\n- Re-sending `cancelled` on a cancelled order is a no-op.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The order id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "example": {
+                "status": "cancelled"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "total_amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "is_paid": {
+                          "type": "boolean"
+                        },
+                        "paid_at": {
+                          "type": "null"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "email",
+                            "phone"
+                          ]
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "product_name": {
+                                "type": "string"
+                              },
+                              "quantity": {
+                                "type": "integer"
+                              },
+                              "price": {
+                                "type": "string"
+                              },
+                              "subtotal": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status",
+                        "status_label",
+                        "total_amount",
+                        "currency",
+                        "is_paid",
+                        "paid_at",
+                        "user",
+                        "items",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Order updated successfully",
+                  "data": {
+                    "id": 3,
+                    "status": "cancelled",
+                    "status_label": "Cancelled",
+                    "total_amount": "9.00",
+                    "currency": "KWD",
+                    "is_paid": false,
+                    "paid_at": null,
+                    "user": {
+                      "id": 1,
+                      "name": "Client User",
+                      "email": "client@app.com",
+                      "phone": "0096512345678"
+                    },
+                    "items": [
+                      {
+                        "id": 6,
+                        "product_name": "Notebook",
+                        "quantity": 2,
+                        "price": "4.50",
+                        "subtotal": "9.00"
+                      }
+                    ],
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "An order that is paid or has a payment in progress cannot be cancelled.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "You can only cancel the order; it is confirmed by a successful payment.",
+                  "errors": {
+                    "status": [
+                      "You can only cancel the order; it is confirmed by a successful payment."
+                    ]
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Order",
+        "deprecated": false,
+        "description": "Deletes the order and its items. Orders with **any** payment are kept: **409**.",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The order id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Order deleted successfully",
+                  "data": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The requested resource was not found.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "This order has payments and cannot be deleted.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/orders/{order_id}/payments": {
+      "post": {
+        "summary": "Process Payment",
+        "deprecated": false,
+        "description": "Pays a **pending** order. **The test script saves `payment_id`, `payment_reference`, `payment_amount` and `currency`** for the webhook requests.\n\n| Field | Rules |\n|---|---|\n| payment_method | required, a key of `config/payment.php` gateways: `credit_card`, `paypal` |\n\nThe order row is locked, then a `pending` payment is created with a ULID `reference`. The gateway is called **outside** the transaction, and the result is applied under a lock on the payment.\n\n- **201** `successful` → the order becomes `confirmed` and `paid_at` is set.\n- **201** `failed` (\"Payment failed\") → the order stays `pending`; the client can pay again.\n- **202** `pending` → the gateway timed out. The card may have been charged, so the payment is not failed and not re-charged. Only the webhook settles it; until then it blocks a new payment and cancellation.\n\nErrors: 401; 404 order missing or not owned; 409 order already confirmed/paid or a payment is pending (this also stops a double submit); 422 order cancelled (\"Only pending orders can be paid\") or invalid method.\n\nSimulate outcomes with `CREDIT_CARD_SIMULATE` / `PAYPAL_SIMULATE` = `success` | `fail` | `timeout` (run `php artisan config:clear` if config is cached).",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "The order id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "payment_method": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "payment_method"
+                ]
+              },
+              "example": {
+                "payment_method": "credit_card"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "order_id": {
+                          "type": "integer"
+                        },
+                        "reference": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "payment_method": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "gateway_reference": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "order_id",
+                        "reference",
+                        "amount",
+                        "currency",
+                        "payment_method",
+                        "status",
+                        "status_label",
+                        "gateway_reference",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Payment processed successfully",
+                  "data": {
+                    "id": 2,
+                    "order_id": 1,
+                    "reference": "01M5JA0YBG6KC3CRD48GD7YT7S",
+                    "amount": "13.35",
+                    "currency": "KWD",
+                    "payment_method": "credit_card",
+                    "status": "successful",
+                    "status_label": "Successful",
+                    "gateway_reference": "credit_card_9wm3ccqg8y9eufvy6rts",
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "202": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "order_id": {
+                          "type": "integer"
+                        },
+                        "reference": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "payment_method": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "gateway_reference": {
+                          "type": "null"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "order_id",
+                        "reference",
+                        "amount",
+                        "currency",
+                        "payment_method",
+                        "status",
+                        "status_label",
+                        "gateway_reference",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Payment is being processed. Its final status will be confirmed shortly.",
+                  "data": {
+                    "id": 3,
+                    "order_id": 4,
+                    "reference": "01M5JA0YCJ5WQDRX9MWP6X00SY",
+                    "amount": "59.98",
+                    "currency": "KWD",
+                    "payment_method": "credit_card",
+                    "status": "pending",
+                    "status_label": "Pending",
+                    "gateway_reference": null,
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Unauthenticated. Please log in and try again.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The requested resource was not found.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "This order has already been paid.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Only pending orders can be paid.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/payments": {
+      "get": {
+        "summary": "List Payments",
+        "deprecated": false,
+        "description": "Payments of all the user's orders, newest first.\n\n| Query | Values |\n|---|---|\n| `filter[status]` | `pending` \\| `successful` \\| `failed` |\n| `filter[order_id]` | order id |\n| `per_page` | default 15, max 100 |",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "filter[status]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[order_id]",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "15",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "order_id": {
+                            "type": "integer"
+                          },
+                          "reference": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "string"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "payment_method": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "status_label": {
+                            "type": "string"
+                          },
+                          "gateway_reference": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "order_id",
+                          "reference",
+                          "amount",
+                          "currency",
+                          "payment_method",
+                          "status",
+                          "status_label",
+                          "gateway_reference",
+                          "created_at",
+                          "updated_at"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer"
+                        },
+                        "last_page": {
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "current_page",
+                        "last_page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "pagination"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Payments retrieved successfully",
+                  "data": [
+                    {
+                      "id": 3,
+                      "order_id": 4,
+                      "reference": "01M5JA0YCJ5WQDRX9MWP6X00SY",
+                      "amount": "59.98",
+                      "currency": "KWD",
+                      "payment_method": "credit_card",
+                      "status": "pending",
+                      "status_label": "Pending",
+                      "gateway_reference": null,
+                      "created_at": "2026-10-22T17:20:00+00:00",
+                      "updated_at": "2026-10-22T17:20:00+00:00"
+                    },
+                    {
+                      "id": 2,
+                      "order_id": 1,
+                      "reference": "01M5JA0YBG6KC3CRD48GD7YT7S",
+                      "amount": "13.35",
+                      "currency": "KWD",
+                      "payment_method": "credit_card",
+                      "status": "successful",
+                      "status_label": "Successful",
+                      "gateway_reference": "credit_card_9wm3ccqg8y9eufvy6rts",
+                      "created_at": "2026-10-22T17:20:00+00:00",
+                      "updated_at": "2026-10-22T17:20:00+00:00"
+                    },
+                    {
+                      "id": 1,
+                      "order_id": 1,
+                      "reference": "01M5JA0YB9YWNSA390NDNT1RDT",
+                      "amount": "13.35",
+                      "currency": "KWD",
+                      "payment_method": "credit_card",
+                      "status": "failed",
+                      "status_label": "Failed",
+                      "gateway_reference": "credit_card_cz5zzvpsv0t1qxdpsw1x",
+                      "created_at": "2026-10-22T17:20:00+00:00",
+                      "updated_at": "2026-10-22T17:20:00+00:00"
+                    }
+                  ],
+                  "pagination": {
+                    "current_page": 1,
+                    "last_page": 1,
+                    "per_page": 15,
+                    "total": 3
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Unauthenticated. Please log in and try again.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/payments/{payment_id}": {
+      "get": {
+        "summary": "Get Payment",
+        "deprecated": false,
+        "description": "One payment. Poll it (or **Get Order**) after a 202 to see when the webhook settles it.",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "payment_id",
+            "in": "path",
+            "description": "The payment id",
+            "required": true,
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "order_id": {
+                          "type": "integer"
+                        },
+                        "reference": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "payment_method": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "gateway_reference": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "order_id",
+                        "reference",
+                        "amount",
+                        "currency",
+                        "payment_method",
+                        "status",
+                        "status_label",
+                        "gateway_reference",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Payment retrieved successfully",
+                  "data": {
+                    "id": 2,
+                    "order_id": 1,
+                    "reference": "01M5JA0YBG6KC3CRD48GD7YT7S",
+                    "amount": "13.35",
+                    "currency": "KWD",
+                    "payment_method": "credit_card",
+                    "status": "successful",
+                    "status_label": "Successful",
+                    "gateway_reference": "credit_card_9wm3ccqg8y9eufvy6rts",
+                    "created_at": "2026-10-22T17:20:00+00:00",
+                    "updated_at": "2026-10-22T17:20:00+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "The requested resource was not found.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/webhooks/{gateway}": {
+      "post": {
+        "summary": "Payment webhook",
+        "deprecated": false,
+        "description": "Called by the payment gateway (no JWT). Body: `{reference, status: successful|failed, amount, currency, gateway_reference?}`.\n\n`X-Signature` = hex HMAC-SHA256 of the raw body with `<GATEWAY>_WEBHOOK_SECRET`.\n\n200 applied (a duplicate or late event is a no-op) · 401 bad signature · 404 unknown gateway or reference (the gateway retries) · 422 invalid payload or amount/currency mismatch.",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "gateway",
+            "in": "path",
+            "description": "Gateway key from config/payment.php (`credit_card` | `paypal`). Unknown key → 404.",
+            "required": true,
+            "example": "credit_card",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "credit_card",
+                "paypal"
+              ]
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "en",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reference": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "reference",
+                  "status",
+                  "amount",
+                  "currency"
+                ]
+              },
+              "example": {
+                "reference": "01M5JGVHKVGX1AB89CES5FKPQT",
+                "status": "failed",
+                "amount": "898.99",
+                "currency": "KWD"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "order_id": {
+                          "type": "integer"
+                        },
+                        "reference": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "payment_method": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "status_label": {
+                          "type": "string"
+                        },
+                        "gateway_reference": {
+                          "type": "null"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "order_id",
+                        "reference",
+                        "amount",
+                        "currency",
+                        "payment_method",
+                        "status",
+                        "status_label",
+                        "gateway_reference",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "status": true,
+                  "message": "Webhook received",
+                  "data": {
+                    "id": 4,
+                    "order_id": 5,
+                    "reference": "01M5JA0YFC1MB38WNRBGGEMQNW",
+                    "amount": "25.00",
+                    "currency": "KWD",
+                    "payment_method": "paypal",
+                    "status": "failed",
+                    "status_label": "Failed",
+                    "gateway_reference": null,
+                    "created_at": "2026-10-22T17:20:01+00:00",
+                    "updated_at": "2026-10-22T17:20:01+00:00"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Invalid webhook signature.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "errors"
+                  ]
+                },
+                "example": {
+                  "status": false,
+                  "message": "Payment gateway not found.",
+                  "errors": null
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Develop Env"
+    }
+  ],
+  "security": []
+}

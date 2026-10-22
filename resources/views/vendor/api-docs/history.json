@@ -323,6 +323,824 @@
                     ]
                 }
             ]
+        },
+        {
+            "number": 2,
+            "recorded_at": "2026-10-22T19:46:24+00:00",
+            "version": "1.0.0",
+            "operations": [
+                {
+                    "type": "added",
+                    "method": "DELETE",
+                    "path": "/api/v1/orders/{order}",
+                    "group": "Orders",
+                    "summary": "Delete order",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "GET",
+                    "path": "/api/v1/orders",
+                    "group": "Orders",
+                    "summary": "List orders",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "GET",
+                    "path": "/api/v1/orders/{order}",
+                    "group": "Orders",
+                    "summary": "Get order",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "GET",
+                    "path": "/api/v1/payments",
+                    "group": "Payments",
+                    "summary": "List payments",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "GET",
+                    "path": "/api/v1/payments/{payment}",
+                    "group": "Payments",
+                    "summary": "Get payment",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "GET",
+                    "path": "/api/v1/products",
+                    "group": "Products",
+                    "summary": "Display a listing of products with filtering, sorting, and pagination.",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "PATCH",
+                    "path": "/api/v1/orders/{order}",
+                    "group": "Orders",
+                    "summary": "Update order",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/change-password",
+                    "group": "Auths",
+                    "summary": "Change password",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.current_password",
+                            "summary": "Added body field `current_password` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password",
+                            "summary": "Added body field `password` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at least 8 characters. Must be confirmed with `password_confirmation`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password_confirmation",
+                            "summary": "Added body field `password_confirmation` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must match `password`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/change-profile-image",
+                    "group": "Auths",
+                    "summary": "Change profile image",
+                    "changes": [
+                        {
+                            "type": "modified",
+                            "category": "header",
+                            "target": "header.Content-Type:description",
+                            "summary": "Header `Content-Type` description updated",
+                            "from": "",
+                            "to": "This endpoint accepts file uploads."
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (multipart/form-data)",
+                            "to": "multipart/form-data"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.profile_image",
+                            "summary": "Added body field `profile_image` (required)",
+                            "to": {
+                                "type": "file",
+                                "required": true,
+                                "description": "Must be an image. Allowed types: `jpeg`, `jpg`, `png` or `webp`. Must be at most 2048 kilobytes.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/forgot-password",
+                    "group": "Auths",
+                    "summary": "Forgot password",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must exist in `users`. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/login",
+                    "group": "Auths",
+                    "summary": "Login",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password",
+                            "summary": "Added body field `password` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/logout",
+                    "group": "Auths",
+                    "summary": "Logout",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.device_id",
+                            "summary": "Added body field `device_id`",
+                            "to": {
+                                "type": "string | null",
+                                "required": false,
+                                "description": "May be `null`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/refresh",
+                    "group": "Auths",
+                    "summary": "Refresh",
+                    "changes": [
+                        {
+                            "type": "modified",
+                            "category": "auth",
+                            "target": "auth",
+                            "summary": "No longer requires authentication",
+                            "from": true,
+                            "to": false
+                        },
+                        {
+                            "type": "added",
+                            "category": "parameter",
+                            "target": "query.refresh_token",
+                            "summary": "Added query parameter `refresh_token`",
+                            "to": {
+                                "type": "string",
+                                "required": false,
+                                "description": "",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "removed",
+                            "category": "header",
+                            "target": "header.Authorization",
+                            "summary": "Removed header `Authorization`",
+                            "from": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Bearer token issued by the authentication endpoints."
+                            }
+                        },
+                        {
+                            "type": "removed",
+                            "category": "response",
+                            "target": "response.401",
+                            "summary": "Response 401 removed"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/register",
+                    "group": "Auths",
+                    "summary": "Register",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.name",
+                            "summary": "Added body field `name` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 255 characters.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.email",
+                            "summary": "Added body field `email`",
+                            "to": {
+                                "type": "string | null<email>",
+                                "required": false,
+                                "description": "May be `null`. Must be a valid email address. Must be unique in `users`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`. Must be unique in `users`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password",
+                            "summary": "Added body field `password` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be confirmed with `password_confirmation`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password_confirmation",
+                            "summary": "Added body field `password_confirmation` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must match `password`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/reset-password",
+                    "group": "Auths",
+                    "summary": "Reset password",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must exist in `users`. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.code",
+                            "summary": "Added body field `code` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be exactly 4 characters.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password",
+                            "summary": "Added body field `password` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be confirmed with `password_confirmation`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.password_confirmation",
+                            "summary": "Added body field `password_confirmation` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must match `password`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/send-otp",
+                    "group": "Auths",
+                    "summary": "Send otp",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.type",
+                            "summary": "Added body field `type` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be one of: `registration`, `login`, `password_reset`, `change_phone` or `complete_registration`.",
+                                "enum": [
+                                    "registration",
+                                    "login",
+                                    "password_reset",
+                                    "change_phone",
+                                    "complete_registration"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.provider",
+                            "summary": "Added body field `provider`",
+                            "to": {
+                                "type": "string | null",
+                                "required": false,
+                                "description": "May be `null`. Must be one of: `sms` or `whatsapp`.",
+                                "enum": [
+                                    "sms",
+                                    "whatsapp"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/set-language",
+                    "group": "Auths",
+                    "summary": "Set language",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.language",
+                            "summary": "Added body field `language` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be one of: `en` or `ar`.",
+                                "enum": [
+                                    "en",
+                                    "ar"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "modified",
+                    "method": "POST",
+                    "path": "/api/v1/auth/verify-otp",
+                    "group": "Auths",
+                    "summary": "Verify otp",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body",
+                            "summary": "Request body added (application/json)",
+                            "to": "application/json"
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.phone",
+                            "summary": "Added body field `phone` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.code",
+                            "summary": "Added body field `code` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be exactly 4 characters.",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.type",
+                            "summary": "Added body field `type` (required)",
+                            "to": {
+                                "type": "string",
+                                "required": true,
+                                "description": "Must be one of: `registration`, `login`, `password_reset`, `change_phone` or `complete_registration`.",
+                                "enum": [
+                                    "registration",
+                                    "login",
+                                    "password_reset",
+                                    "change_phone",
+                                    "complete_registration"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "body",
+                            "target": "body.user_id",
+                            "summary": "Added body field `user_id`",
+                            "to": {
+                                "type": "integer",
+                                "required": false,
+                                "description": "",
+                                "enum": []
+                            }
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.403",
+                            "summary": "Response 403 added"
+                        },
+                        {
+                            "type": "added",
+                            "category": "response",
+                            "target": "response.422",
+                            "summary": "Response 422 added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "POST",
+                    "path": "/api/v1/orders",
+                    "group": "Orders",
+                    "summary": "Create order",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "POST",
+                    "path": "/api/v1/orders/{order}/payments",
+                    "group": "Payments",
+                    "summary": "Create payment",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "POST",
+                    "path": "/api/v1/webhooks/{gateway}",
+                    "group": "Webhooks",
+                    "summary": "Handle",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                },
+                {
+                    "type": "added",
+                    "method": "PUT",
+                    "path": "/api/v1/orders/{order}",
+                    "group": "Orders",
+                    "summary": "Update order",
+                    "changes": [
+                        {
+                            "type": "added",
+                            "category": "endpoint",
+                            "target": "endpoint",
+                            "summary": "Endpoint added"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "snapshot": {
@@ -344,6 +1162,18 @@
             },
             {
                 "name": "Notifications"
+            },
+            {
+                "name": "Orders"
+            },
+            {
+                "name": "Payments"
+            },
+            {
+                "name": "Products"
+            },
+            {
+                "name": "Webhooks"
             }
         ],
         "paths": {
@@ -354,6 +1184,49 @@
                     ],
                     "summary": "Change password",
                     "operationId": "postApiV1AuthChangePassword",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "current_password": {
+                                            "type": "string",
+                                            "examples": [
+                                                "current password"
+                                            ]
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Must be at least 8 characters. Must be confirmed with `password_confirmation`.",
+                                            "minLength": 8,
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        },
+                                        "password_confirmation": {
+                                            "type": "string",
+                                            "description": "Must match `password`.",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "current_password",
+                                        "password",
+                                        "password_confirmation"
+                                    ]
+                                },
+                                "example": {
+                                    "current_password": "current password",
+                                    "password": "secret1234",
+                                    "password_confirmation": "secret1234"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
@@ -375,6 +1248,58 @@
                                     },
                                     "example": {
                                         "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The current password field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "current_password": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The current password field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "password": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The password field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The current password field is required. (and 1 more error)",
+                                        "errors": {
+                                            "current_password": [
+                                                "The current password field is required."
+                                            ],
+                                            "password": [
+                                                "The password field is required."
+                                            ]
+                                        }
                                     }
                                 }
                             }
@@ -419,6 +1344,33 @@
                     ],
                     "summary": "Change profile image",
                     "operationId": "postApiV1AuthChangeProfileImage",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "profile_image": {
+                                            "type": "string",
+                                            "format": "binary",
+                                            "description": "Must be an image. Allowed types: `jpeg`, `jpg`, `png` or `webp`. Must be at most 2048 kilobytes.",
+                                            "maxLength": 2048,
+                                            "examples": [
+                                                "(binary)"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "profile_image"
+                                    ]
+                                },
+                                "example": {
+                                    "profile_image": "(binary)"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
@@ -443,6 +1395,67 @@
                                     }
                                 }
                             }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The profile image field is required."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "profile_image": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The profile image field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The profile image field is required.",
+                                        "errors": {
+                                            "profile_image": [
+                                                "The profile image field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [
@@ -459,9 +1472,9 @@
                         },
                         {
                             "name": "Content-Type",
-                            "value": "application/json",
+                            "value": "multipart/form-data",
                             "required": true,
-                            "description": ""
+                            "description": "This endpoint accepts file uploads."
                         },
                         {
                             "name": "Authorization",
@@ -549,9 +1562,97 @@
                     ],
                     "summary": "Forgot password",
                     "operationId": "postApiV1AuthForgotPassword",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must exist in `users`. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "phone"
+                                    ]
+                                },
+                                "example": {
+                                    "phone": "+1 555 010 9999"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The phone field is required."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The phone field is required.",
+                                        "errors": {
+                                            "phone": [
+                                                "The phone field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -582,9 +1683,117 @@
                     ],
                     "summary": "Login",
                     "operationId": "postApiV1AuthLogin",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "phone",
+                                        "password"
+                                    ]
+                                },
+                                "example": {
+                                    "phone": "+1 555 010 9999",
+                                    "password": "secret1234"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The phone field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "password": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The password field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The phone field is required. (and 1 more error)",
+                                        "errors": {
+                                            "phone": [
+                                                "The phone field is required."
+                                            ],
+                                            "password": [
+                                                "The password field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -615,6 +1824,31 @@
                     ],
                     "summary": "Logout",
                     "operationId": "postApiV1AuthLogout",
+                    "requestBody": {
+                        "required": false,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "device_id": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "May be `null`.",
+                                            "examples": [
+                                                1
+                                            ]
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "device_id": 1
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
@@ -636,6 +1870,67 @@
                                     },
                                     "example": {
                                         "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The field is invalid."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "field": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The field is invalid."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The field is invalid.",
+                                        "errors": {
+                                            "field": [
+                                                "The field is invalid."
+                                            ]
+                                        }
                                     }
                                 }
                             }
@@ -739,37 +2034,26 @@
                     ],
                     "summary": "Refresh",
                     "operationId": "postApiV1AuthRefresh",
+                    "parameters": [
+                        {
+                            "name": "refresh_token",
+                            "in": "query",
+                            "required": false,
+                            "schema": {
+                                "type": "string",
+                                "examples": [
+                                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.example-signature"
+                                ]
+                            },
+                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.example-signature"
+                        }
+                    ],
                     "responses": {
                         "201": {
                             "description": "Created"
-                        },
-                        "401": {
-                            "description": "The request is missing a valid access token.",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "type": "object",
-                                        "properties": {
-                                            "message": {
-                                                "type": "string",
-                                                "examples": [
-                                                    "Unauthenticated."
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "example": {
-                                        "message": "Unauthenticated."
-                                    }
-                                }
-                            }
                         }
                     },
-                    "security": [
-                        {
-                            "bearerAuth": []
-                        }
-                    ],
+                    "security": [],
                     "x-headers": [
                         {
                             "name": "Accept",
@@ -782,18 +2066,11 @@
                             "value": "application/json",
                             "required": true,
                             "description": ""
-                        },
-                        {
-                            "name": "Authorization",
-                            "value": "Bearer {YOUR_API_TOKEN}",
-                            "required": true,
-                            "description": "Bearer token issued by the authentication endpoints."
                         }
                     ],
                     "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@refresh",
                     "x-middleware": [
-                        "api",
-                        "auth:api"
+                        "api"
                     ]
                 }
             },
@@ -804,9 +2081,149 @@
                     ],
                     "summary": "Register",
                     "operationId": "postApiV1AuthRegister",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Must be at most 255 characters.",
+                                            "maxLength": 255,
+                                            "examples": [
+                                                "John Doe"
+                                            ]
+                                        },
+                                        "email": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "format": "email",
+                                            "description": "May be `null`. Must be a valid email address. Must be unique in `users`.",
+                                            "examples": [
+                                                "john@example.com"
+                                            ]
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`. Must be unique in `users`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Must be confirmed with `password_confirmation`.",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        },
+                                        "password_confirmation": {
+                                            "type": "string",
+                                            "description": "Must match `password`.",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "phone",
+                                        "password",
+                                        "password_confirmation"
+                                    ]
+                                },
+                                "example": {
+                                    "name": "John Doe",
+                                    "email": "john@example.com",
+                                    "phone": "+1 555 010 9999",
+                                    "password": "secret1234",
+                                    "password_confirmation": "secret1234"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The name field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The name field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The name field is required. (and 1 more error)",
+                                        "errors": {
+                                            "name": [
+                                                "The name field is required."
+                                            ],
+                                            "phone": [
+                                                "The phone field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -887,9 +2304,138 @@
                             "example": "application"
                         }
                     ],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must exist in `users`. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "description": "Must be exactly 4 characters.",
+                                            "minLength": 4,
+                                            "maxLength": 4,
+                                            "examples": [
+                                                "code"
+                                            ]
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "description": "Must be confirmed with `password_confirmation`.",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        },
+                                        "password_confirmation": {
+                                            "type": "string",
+                                            "description": "Must match `password`.",
+                                            "examples": [
+                                                "secret1234"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "phone",
+                                        "code",
+                                        "password",
+                                        "password_confirmation"
+                                    ]
+                                },
+                                "example": {
+                                    "phone": "+1 555 010 9999",
+                                    "code": "code",
+                                    "password": "secret1234",
+                                    "password_confirmation": "secret1234"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The phone field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "code": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The code field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The phone field is required. (and 1 more error)",
+                                        "errors": {
+                                            "phone": [
+                                                "The phone field is required."
+                                            ],
+                                            "code": [
+                                                "The code field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -920,9 +2466,140 @@
                     ],
                     "summary": "Send otp",
                     "operationId": "postApiV1AuthSendOtp",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "Must be one of: `registration`, `login`, `password_reset`, `change_phone` or `complete_registration`.",
+                                            "enum": [
+                                                "registration",
+                                                "login",
+                                                "password_reset",
+                                                "change_phone",
+                                                "complete_registration"
+                                            ],
+                                            "examples": [
+                                                "registration"
+                                            ]
+                                        },
+                                        "provider": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "description": "May be `null`. Must be one of: `sms` or `whatsapp`.",
+                                            "enum": [
+                                                "sms",
+                                                "whatsapp"
+                                            ],
+                                            "examples": [
+                                                "sms"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "phone",
+                                        "type"
+                                    ]
+                                },
+                                "example": {
+                                    "phone": "+1 555 010 9999",
+                                    "type": "registration",
+                                    "provider": "sms"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The phone field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The type field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The phone field is required. (and 1 more error)",
+                                        "errors": {
+                                            "phone": [
+                                                "The phone field is required."
+                                            ],
+                                            "type": [
+                                                "The type field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -967,6 +2644,35 @@
                             "example": "language"
                         }
                     ],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "language": {
+                                            "type": "string",
+                                            "description": "Must be one of: `en` or `ar`.",
+                                            "enum": [
+                                                "en",
+                                                "ar"
+                                            ],
+                                            "examples": [
+                                                "en"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "language"
+                                    ]
+                                },
+                                "example": {
+                                    "language": "en"
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
@@ -988,6 +2694,67 @@
                                     },
                                     "example": {
                                         "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The language field is required."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "language": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The language field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The language field is required.",
+                                        "errors": {
+                                            "language": [
+                                                "The language field is required."
+                                            ]
+                                        }
                                     }
                                 }
                             }
@@ -1032,9 +2799,143 @@
                     ],
                     "summary": "Verify otp",
                     "operationId": "postApiV1AuthVerifyOtp",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "Must be at most 20 characters. Must match the pattern `/^(00965|\\+965)[0-9]{8}$/`.",
+                                            "maxLength": 20,
+                                            "pattern": "^(00965|\\+965)[0-9]{8}$",
+                                            "examples": [
+                                                "+1 555 010 9999"
+                                            ]
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "description": "Must be exactly 4 characters.",
+                                            "minLength": 4,
+                                            "maxLength": 4,
+                                            "examples": [
+                                                "code"
+                                            ]
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "Must be one of: `registration`, `login`, `password_reset`, `change_phone` or `complete_registration`.",
+                                            "enum": [
+                                                "registration",
+                                                "login",
+                                                "password_reset",
+                                                "change_phone",
+                                                "complete_registration"
+                                            ],
+                                            "examples": [
+                                                "registration"
+                                            ]
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "examples": [
+                                                1
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "phone",
+                                        "code",
+                                        "type"
+                                    ]
+                                },
+                                "example": {
+                                    "phone": "+1 555 010 9999",
+                                    "code": "code",
+                                    "type": "registration",
+                                    "user_id": 1
+                                }
+                            }
+                        }
+                    },
                     "responses": {
                         "201": {
                             "description": "Created"
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The phone field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "phone": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The phone field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "code": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The code field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The phone field is required. (and 1 more error)",
+                                        "errors": {
+                                            "phone": [
+                                                "The phone field is required."
+                                            ],
+                                            "code": [
+                                                "The code field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "security": [],
@@ -1833,6 +3734,1431 @@
                         "api",
                         "auth:api"
                     ]
+                }
+            },
+            "/api/v1/orders": {
+                "get": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "List orders",
+                    "operationId": "getApiV1Orders",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@index",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.index"
+                },
+                "post": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "Create order",
+                    "operationId": "postApiV1Orders",
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "product_id": {
+                                                        "type": "integer",
+                                                        "description": "Must exist in `products`.",
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    },
+                                                    "quantity": {
+                                                        "type": "integer",
+                                                        "description": "Minimum: 1. Maximum: 10000.",
+                                                        "minimum": 1,
+                                                        "maximum": 10000,
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "product_id",
+                                                    "quantity"
+                                                ]
+                                            },
+                                            "description": "Must have at least 1 items. Must have at most 100 items.",
+                                            "minItems": 1,
+                                            "maxItems": 100,
+                                            "examples": [
+                                                [
+                                                    "first",
+                                                    "second"
+                                                ]
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "items"
+                                    ]
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "product_id": 1,
+                                            "quantity": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Created"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The items field is required."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The items field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The items field is required.",
+                                        "errors": {
+                                            "items": [
+                                                "The items field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@store",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.store"
+                }
+            },
+            "/api/v1/orders/{order}": {
+                "get": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "Get order",
+                    "operationId": "getApiV1OrdersOrder",
+                    "parameters": [
+                        {
+                            "name": "order",
+                            "in": "path",
+                            "required": true,
+                            "description": "The order identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    "desc"
+                                ]
+                            },
+                            "example": "desc"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@show",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.show"
+                },
+                "put": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "Update order",
+                    "operationId": "putApiV1OrdersOrder",
+                    "parameters": [
+                        {
+                            "name": "order",
+                            "in": "path",
+                            "required": true,
+                            "description": "The order identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    "desc"
+                                ]
+                            },
+                            "example": "desc"
+                        }
+                    ],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "product_id": {
+                                                        "type": "integer",
+                                                        "description": "Must exist in `products`.",
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    },
+                                                    "quantity": {
+                                                        "type": "integer",
+                                                        "description": "Minimum: 1. Maximum: 10000.",
+                                                        "minimum": 1,
+                                                        "maximum": 10000,
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "product_id",
+                                                    "quantity"
+                                                ]
+                                            },
+                                            "description": "Must have at least 1 items. Must have at most 100 items.",
+                                            "minItems": 1,
+                                            "maxItems": 100,
+                                            "examples": [
+                                                [
+                                                    "first",
+                                                    "second"
+                                                ]
+                                            ]
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "Must be one of: `cancelled`.",
+                                            "enum": [
+                                                "cancelled"
+                                            ],
+                                            "examples": [
+                                                "cancelled"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "items",
+                                        "status"
+                                    ]
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "product_id": 1,
+                                            "quantity": 1
+                                        }
+                                    ],
+                                    "status": "cancelled"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The items field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The items field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The status field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The items field is required. (and 1 more error)",
+                                        "errors": {
+                                            "items": [
+                                                "The items field is required."
+                                            ],
+                                            "status": [
+                                                "The status field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@update",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.update"
+                },
+                "patch": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "Update order",
+                    "operationId": "patchApiV1OrdersOrder",
+                    "parameters": [
+                        {
+                            "name": "order",
+                            "in": "path",
+                            "required": true,
+                            "description": "The order identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    "desc"
+                                ]
+                            },
+                            "example": "desc"
+                        }
+                    ],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "product_id": {
+                                                        "type": "integer",
+                                                        "description": "Must exist in `products`.",
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    },
+                                                    "quantity": {
+                                                        "type": "integer",
+                                                        "description": "Minimum: 1. Maximum: 10000.",
+                                                        "minimum": 1,
+                                                        "maximum": 10000,
+                                                        "examples": [
+                                                            1
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "product_id",
+                                                    "quantity"
+                                                ]
+                                            },
+                                            "description": "Must have at least 1 items. Must have at most 100 items.",
+                                            "minItems": 1,
+                                            "maxItems": 100,
+                                            "examples": [
+                                                [
+                                                    "first",
+                                                    "second"
+                                                ]
+                                            ]
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "Must be one of: `cancelled`.",
+                                            "enum": [
+                                                "cancelled"
+                                            ],
+                                            "examples": [
+                                                "cancelled"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "items",
+                                        "status"
+                                    ]
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "product_id": 1,
+                                            "quantity": 1
+                                        }
+                                    ],
+                                    "status": "cancelled"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The items field is required. (and 1 more error)"
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The items field is required."
+                                                            ]
+                                                        }
+                                                    },
+                                                    "status": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The status field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The items field is required. (and 1 more error)",
+                                        "errors": {
+                                            "items": [
+                                                "The items field is required."
+                                            ],
+                                            "status": [
+                                                "The status field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@update",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.update"
+                },
+                "delete": {
+                    "tags": [
+                        "Orders"
+                    ],
+                    "summary": "Delete order",
+                    "operationId": "deleteApiV1OrdersOrder",
+                    "parameters": [
+                        {
+                            "name": "order",
+                            "in": "path",
+                            "required": true,
+                            "description": "The order identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    "desc"
+                                ]
+                            },
+                            "example": "desc"
+                        }
+                    ],
+                    "responses": {
+                        "204": {
+                            "description": "The resource was deleted."
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\OrderController@destroy",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.destroy"
+                }
+            },
+            "/api/v1/orders/{order}/payments": {
+                "post": {
+                    "tags": [
+                        "Payments"
+                    ],
+                    "summary": "Create payment",
+                    "operationId": "postApiV1OrdersOrderPayments",
+                    "parameters": [
+                        {
+                            "name": "order",
+                            "in": "path",
+                            "required": true,
+                            "description": "The order identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    "desc"
+                                ]
+                            },
+                            "example": "desc"
+                        }
+                    ],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "payment_method": {
+                                            "type": "string",
+                                            "description": "Must be one of: `credit_card` or `paypal`.",
+                                            "enum": [
+                                                "credit_card",
+                                                "paypal"
+                                            ],
+                                            "examples": [
+                                                "credit_card"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "payment_method"
+                                    ]
+                                },
+                                "example": {
+                                    "payment_method": "credit_card"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Created"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "403": {
+                            "description": "The authenticated user may not perform this action.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "This action is unauthorized."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "This action is unauthorized."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "The payload failed validation.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "The payment method field is required."
+                                                ]
+                                            },
+                                            "errors": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "payment_method": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "examples": [
+                                                                "The payment method field is required."
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "The payment method field is required.",
+                                        "errors": {
+                                            "payment_method": [
+                                                "The payment method field is required."
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\PaymentController@store",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "orders.payments.store"
+                }
+            },
+            "/api/v1/payments": {
+                "get": {
+                    "tags": [
+                        "Payments"
+                    ],
+                    "summary": "List payments",
+                    "operationId": "getApiV1Payments",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\PaymentController@index",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "payments.index"
+                }
+            },
+            "/api/v1/payments/{payment}": {
+                "get": {
+                    "tags": [
+                        "Payments"
+                    ],
+                    "summary": "Get payment",
+                    "operationId": "getApiV1PaymentsPayment",
+                    "parameters": [
+                        {
+                            "name": "payment",
+                            "in": "path",
+                            "required": true,
+                            "description": "The payment identifier. Must match `[0-9]+`.",
+                            "schema": {
+                                "type": "integer",
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "example": 1
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        },
+                        "401": {
+                            "description": "The request is missing a valid access token.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Unauthenticated."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Unauthenticated."
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Authorization",
+                            "value": "Bearer {YOUR_API_TOKEN}",
+                            "required": true,
+                            "description": "Bearer token issued by the authentication endpoints."
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\PaymentController@show",
+                    "x-middleware": [
+                        "api",
+                        "auth:api"
+                    ],
+                    "x-route-name": "payments.show"
+                }
+            },
+            "/api/v1/products": {
+                "get": {
+                    "tags": [
+                        "Products"
+                    ],
+                    "summary": "Display a listing of products with filtering, sorting, and pagination.",
+                    "operationId": "getApiV1Products",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    },
+                    "security": [],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\Client\\ProductController@index",
+                    "x-middleware": [
+                        "api"
+                    ],
+                    "x-route-name": "products.index"
+                }
+            },
+            "/api/v1/webhooks/{gateway}": {
+                "post": {
+                    "tags": [
+                        "Webhooks"
+                    ],
+                    "summary": "Handle",
+                    "operationId": "postApiV1WebhooksGateway",
+                    "parameters": [
+                        {
+                            "name": "gateway",
+                            "in": "path",
+                            "required": true,
+                            "description": "The gateway identifier.",
+                            "schema": {
+                                "type": "string",
+                                "examples": [
+                                    "gateway"
+                                ]
+                            },
+                            "example": "gateway"
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Created"
+                        },
+                        "404": {
+                            "description": "No resource matches the given identifier.",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "No query results for model."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "No query results for model."
+                                    }
+                                }
+                            }
+                        },
+                        "429": {
+                            "description": "The rate limit for this endpoint was exceeded.",
+                            "headers": {
+                                "Retry-After": {
+                                    "schema": {
+                                        "type": "string",
+                                        "examples": [
+                                            "60"
+                                        ]
+                                    }
+                                },
+                                "X-RateLimit-Limit": {
+                                    "schema": {
+                                        "type": "string",
+                                        "examples": [
+                                            "60"
+                                        ]
+                                    }
+                                },
+                                "X-RateLimit-Remaining": {
+                                    "schema": {
+                                        "type": "string",
+                                        "examples": [
+                                            "0"
+                                        ]
+                                    }
+                                }
+                            },
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "message": {
+                                                "type": "string",
+                                                "examples": [
+                                                    "Too Many Attempts."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Too Many Attempts."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [],
+                    "x-headers": [
+                        {
+                            "name": "Accept",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        },
+                        {
+                            "name": "Content-Type",
+                            "value": "application/json",
+                            "required": true,
+                            "description": ""
+                        }
+                    ],
+                    "x-controller": "App\\Http\\Controllers\\Api\\V1\\WebhookController@handle",
+                    "x-middleware": [
+                        "api",
+                        "throttle:60,1"
+                    ],
+                    "x-route-name": "webhooks.handle"
                 }
             }
         },
