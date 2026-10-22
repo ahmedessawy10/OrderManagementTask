@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\Client\NotificationController;
 use App\Http\Controllers\Api\V1\Client\OrderController;
 use App\Http\Controllers\Api\V1\Client\PaymentController;
 use App\Http\Controllers\Api\V1\Client\ProductController;
+use App\Http\Controllers\Api\V1\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
@@ -36,6 +37,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('payments/{payment}', [PaymentController::class, 'show'])->whereNumber('payment')->name('payments.show');
 });
+
+Route::post('webhooks/{gateway}', [WebhookController::class, 'handle'])
+    ->middleware('throttle:60,1')
+    ->name('webhooks.handle');
 
 Route::prefix('notifications')->middleware('auth:api')->group(function () {
     Route::get('/', [NotificationController::class, 'index']);
