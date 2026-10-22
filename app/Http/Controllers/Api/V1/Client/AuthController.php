@@ -38,7 +38,7 @@ final class AuthController extends Controller
             return $this->success(
                 __('messages.auth.register_success'),
                 UserResource::make($user),
-                200
+                201
             );
         } catch (ValidationException $e) {
             return $this->fail($e->getMessage(), 422);
@@ -102,7 +102,7 @@ final class AuthController extends Controller
                 ]
             );
         } catch (UserBlockedException $e) {
-            return $this->fail($e->getMessage(), 489);
+            return $this->fail($e->getMessage(), 403);
         } catch (ValidationException $e) {
             return $this->fail($e->getMessage(), 422);
         } catch (IncompleteException $e) {

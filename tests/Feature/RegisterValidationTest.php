@@ -81,7 +81,7 @@ final class RegisterValidationTest extends TestCase
             'password_confirmation' => 'secret123',
         ]);
 
-        $response->assertOk()
+        $response->assertCreated()
             ->assertJsonPath('status', true);
 
         $this->assertDatabaseHas('otps', [

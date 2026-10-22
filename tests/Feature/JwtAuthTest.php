@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Enums\UserStatus;
 use App\Models\User;
 use App\Services\Client\AuthService;
 use Database\Seeders\RoleSeeder;
@@ -105,5 +106,21 @@ final class JwtAuthTest extends TestCase
         $response = $this->postJson('/api/v1/auth/refresh');
 
         $response->assertStatus(401);
+    }
+
+    public function test_blocked_user_login_returns_403(): void
+    {
+        $user = User::factory()->create([
+            'phone_verified_at' => now(),
+            'password' => 'secret123',
+            'user_status' => UserStatus::BLOCKED,
+            'block_reason' => 'spam',
+        ]);
+        $user->assignRole('client');
+
+        $this->postJson('/api/v1/auth/login', ['phone' => $user->phone, 'password' => 'secret123'])
+            ->assertForbidden()
+            ->assertJsonPath('status', false)
+            ->assertJsonPath('message', __('messages.auth.account_blocked', ['reason' => 'spam']));
     }
 }

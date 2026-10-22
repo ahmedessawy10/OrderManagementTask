@@ -212,4 +212,3 @@ final class ProductTest extends TestCase
         $this->assertStringContainsString('آيفون', $data[0]['name']);
     }
 }
-

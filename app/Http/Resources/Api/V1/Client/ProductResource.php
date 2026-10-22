@@ -35,6 +35,8 @@ final class ProductResource extends JsonResource
             'image' => $locale === 'ar' ? ($imageAr ?? $imageEn) : ($imageEn ?? $imageAr),
             'image_en' => $imageEn,
             'image_ar' => $imageAr,
+            'created_at' => $this->created_at?->toIso8601String(),
+            'updated_at' => $this->updated_at?->toIso8601String(),
         ];
     }
 }

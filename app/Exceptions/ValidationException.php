@@ -8,9 +8,12 @@ class ValidationException extends Exception
 {
     public $errors;
 
-    public function __construct($message = null, $errors = [])
+    public int $status;
+
+    public function __construct($message = null, $errors = [], int $status = 422)
     {
         $this->errors = $errors;
+        $this->status = $status;
         parent::__construct($message ?? __('messages.validation_error'));
     }
 }

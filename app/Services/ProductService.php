@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\Traits\Paginatable;
 use App\Models\Product;
 use App\Models\ProductTranslation;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -15,13 +16,15 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductService
 {
+    use Paginatable;
+
     /**
      * Get paginated products using QueryBuilder with filters, sorts, and pagination.
      */
     public function getProducts(?int $perPage = null, ?Request $request = null): LengthAwarePaginator
     {
         $request = $request ?? request();
-        $perPage = $perPage ?? (int) $request->input('per_page', 15);
+        $perPage = $perPage ?? $this->perPage($request);
 
         return $this->buildQuery($request)
             ->paginate($perPage)
